@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="./src/style.css">
   </head>
   <body>
     <nav>
@@ -12,5 +13,57 @@
       <a href="/about">About</a>
     </nav>
     <h1>Home!</h1>
+
+    
+    <div id="my-box" onclick="handleClick()" class="my-red-box h-28 w-28 flex items-center justify-center cursor-pointer bg-red-500">
+      Click me
+    </div>
+
+    <style>
+      .my-red-box {
+        view-transition-name: my-red-box;
+      }
+
+      ::view-transition-old(my-red-box) {
+        animation: slide-out 300ms ease-in-out;
+      }
+
+      ::view-transition-new(my-red-box) {
+        animation: slide-in 300ms ease-in-out;
+      }
+
+      @keyframes slide-out {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(144);
+        }
+      }
+      @keyframes slide-in {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-144);
+        }
+      }
+    </style>
+
+    <script>
+      const $box = document.getElementById('my-box');
+
+      const moveBox = () => {
+        $box.classList.toggle('translate-x-36');
+      }
+
+      function handleClick(e) {
+        if(!document.startViewTransition) {
+          return;
+        }
+
+        document.startViewTransition(() => moveBox())
+      }
+    </script>
   </body>
 </html>
