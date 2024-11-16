@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "path": "./astro",
+            "name": "astro"
+        },
+        {
+            "path": "./vanilla",
+            "name": "vanilla"
+        }
+    ],
+}
