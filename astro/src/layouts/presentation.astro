@@ -1,0 +1,27 @@
+---
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body class="flex h-screen w-screen flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-center gap-16">
+      <div class="flex w-full items-center justify-between">
+        <a href="/">⬅️ Back</a>
+        <h1 class="text-2xl">Presentation</h1>
+        <a href="/presentation/2">Next ➡️</a>
+      </div>
+      <div
+        class="flex h-[28rem] w-[48rem] flex-col items-center justify-center shadow-md ring-1"
+      >
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
