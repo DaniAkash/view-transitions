@@ -1,6 +1,7 @@
 ---
 const { pathname } = Astro.url;
 const currentPage = parseInt(pathname.split("/").pop() ?? "") || 1;
+import "./presentation.css";
 ---
 
 <html lang="en">
@@ -15,8 +16,9 @@ const currentPage = parseInt(pathname.split("/").pop() ?? "") || 1;
     <div class="flex flex-col items-center justify-center gap-16">
       <div class="flex w-full items-center justify-between">
         <a
-          class={currentPage <= 2 ? "opacity-0 pointer-events-none" : ""}
-          href={`${currentPage - 1}`}>⬅️ Back</a
+          class={currentPage <= 1 ? "opacity-0 pointer-events-none" : ""}
+          href={currentPage <= 2 ? "/presentation" : `${currentPage - 1}`}
+          >⬅️ Back</a
         >
         <h1 class="text-2xl">Presentation</h1>
         <a
@@ -25,10 +27,71 @@ const currentPage = parseInt(pathname.split("/").pop() ?? "") || 1;
         >
       </div>
       <div
-        class="flex h-[28rem] w-[48rem] flex-col items-center justify-center shadow-md ring-1"
+        id="presentation-canvas"
+        class="flex h-[28rem] w-[48rem] flex-col items-center justify-center gap-8 shadow-md ring-1"
       >
         <slot />
       </div>
     </div>
+    <script is:inline>
+      const getSlideNo = (url) => parseInt(url.split("/").pop() ?? "") || 1;
+      const currentSlide = getSlideNo(window.location.pathname);
+      // Old Page slide to the left
+      window.addEventListener("pageswap", async (e) => {
+        if (e.viewTransition) {
+          const targetUrl = e.activation.entry.url;
+          if (targetUrl.includes("presentation")) {
+            const targetSlide = getSlideNo(targetUrl);
+
+            if (currentSlide > targetSlide) {
+              document.getElementById(
+                "presentation-canvas",
+              ).style.viewTransitionName = "presentation-canvas-reverse";
+            } else {
+              document.getElementById(
+                "presentation-canvas",
+              ).style.viewTransitionName = "presentation-canvas";
+            }
+
+            await e.viewTransition.finished;
+
+            document.getElementById(
+              "presentation-canvas",
+            ).style.viewTransitionName = "";
+          }
+        }
+      });
+
+      // New Page slide in from the right
+      window.addEventListener("pagereveal", async (e) => {
+        if (e.viewTransition) {
+          const fromUrl = navigation.activation.from.url;
+          const currentUrl = navigation.activation.entry.url;
+          if (
+            fromUrl.includes("presentation") &&
+            currentUrl.includes("presentation")
+          ) {
+            const fromSlide = getSlideNo(fromUrl);
+            const currentSlide = getSlideNo(currentUrl);
+
+            if (fromSlide > currentSlide) {
+              document.getElementById(
+                "presentation-canvas",
+              ).style.viewTransitionName = "presentation-canvas-reverse";
+            } else {
+              document.getElementById(
+                "presentation-canvas",
+              ).style.viewTransitionName = "presentation-canvas";
+            }
+
+            await e.viewTransition.ready;
+
+            document.getElementById(
+              "presentation-canvas",
+            ).style.viewTransitionName = "";
+          }
+        }
+      });
+    </script>
   </body>
 </html>
