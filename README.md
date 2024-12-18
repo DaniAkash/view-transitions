@@ -1,4 +1,3 @@
-<!-- README FIle for this project -->
 # View Transitions API
 
 This talk is part of Geek Night 102nd edition
