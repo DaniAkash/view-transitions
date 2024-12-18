@@ -1,44 +1,46 @@
 ---
 import "../../src/styles/reveal.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<div class="reveal !h-[calc(100vh-64px)] !w-screen">
-  <div class="slides">
-    <section data-auto-animate>
-      <p>I'm Dani Akash</p>
-    </section>
-    <section data-auto-animate>
-      <p>I'm Dani Akash</p>
-      <ul>
-        <li class="fragment">Know JavaScript & React</li>
-        <li class="fragment">Work at Clarifai</li>
-        <li class="fragment">Like Science, Sci-fi and WorldBuilding</li>
-        <li class="fragment">On a journey to platinum all Souls Games</li>
-      </ul>
-    </section>
-    <section data-auto-animate>
-      <p>View Transitions API</p>
-      <p>Making boring websites exciting!</p>
-    </section>
-    <section data-auto-animate>
-      <p>View Transitions API</p>
-    </section>
-    <section data-auto-animate>
-      <p>What does view transitions mean?</p>
-      <p class="fragment text-left text-[18px]">
-        View transitions offer a way to animate the transition between different
-        views in a web application.
-      </p>
-      <small class="fragment w-full text-right text-[14px]"
-        >- <a
-          href="https://www.debugbear.com/blog/view-transitions-spa-without-framework"
-          target="_blank"
+<BaseLayout>
+  <div class="reveal !h-[calc(100vh-64px)] !w-screen">
+    <div class="slides">
+      <section data-auto-animate>
+        <p>I'm Dani Akash</p>
+      </section>
+      <section data-auto-animate>
+        <p>I'm Dani Akash</p>
+        <ul>
+          <li class="fragment">Know JavaScript & React</li>
+          <li class="fragment">Work at Clarifai</li>
+          <li class="fragment">Like Science, Sci-fi and WorldBuilding</li>
+          <li class="fragment">On a journey to platinum all Souls Games</li>
+        </ul>
+      </section>
+      <section data-auto-animate>
+        <p>View Transitions API</p>
+        <p>Making boring websites exciting!</p>
+      </section>
+      <section data-auto-animate>
+        <p>View Transitions API</p>
+      </section>
+      <section data-auto-animate>
+        <p>What does view transitions mean?</p>
+        <p class="fragment text-left text-[18px]">
+          View transitions offer a way to animate the transition between
+          different views in a web application.
+        </p>
+        <small class="fragment w-full text-right text-[14px]"
+          >- <a
+            href="https://www.debugbear.com/blog/view-transitions-spa-without-framework"
+            target="_blank"
+          >
+            Debug Bear</a
+          ></small
         >
-          Debug Bear</a
-        ></small
-      >
-    </section>
-    <!-- <section>
+      </section>
+      <!-- <section>
       <pre
         class="fragment"><code data-trim data-noescape>{`@view-transition {
   navigation: auto;
@@ -46,32 +48,32 @@ import "../../src/styles/reveal.css";
 `}</code></pre>
       <p class="fragment">This will animate most components</p>
     </section> -->
-    <section data-auto-animate>
-      Let's see a demo!
-      <div
-        data-id="box"
-        class="flex h-28 w-28 items-center justify-center bg-red-500"
-      >
-      </div>
-    </section>
-    <section data-auto-animate>
-      Let's see a demo!
-      <div
-        data-id="box"
-        class="ml-96 flex h-28 w-28 items-center justify-center bg-red-500"
-      >
-      </div>
-    </section>
-    <section>
-      <pre><code data-trim data-noescape data-line-numbers="1|4">
+      <section data-auto-animate>
+        Let's see a demo!
+        <div
+          data-id="box"
+          class="flex h-28 w-28 items-center justify-center bg-red-500"
+        >
+        </div>
+      </section>
+      <section data-auto-animate>
+        Let's see a demo!
+        <div
+          data-id="box"
+          class="ml-96 flex h-28 w-28 items-center justify-center bg-red-500"
+        >
+        </div>
+      </section>
+      <section>
+        <pre><code data-trim data-noescape data-line-numbers="1|4">
 {`const $box = document.getElementById("my-box");
 
 const moveBox = () => {
   $box.classList.toggle("translate-x-36");
 };`}</code></pre>
-    </section>
-    <section>
-      <pre>
+      </section>
+      <section>
+        <pre>
         <code data-trim data-noescape data-line-numbers="2-4|6">
 {`function handleClick(e) {
   if (!document.startViewTransition) {
@@ -82,80 +84,81 @@ const moveBox = () => {
 }`}
         </code>
       </pre>
-    </section>
-    <section>
-      <pre><code data-trim data-noescape>{`.my-red-box {
+      </section>
+      <section>
+        <pre><code data-trim data-noescape>{`.my-red-box {
   view-transition-name: my-red-box;
 }`}</code></pre>
-    </section>
-    <section>
-      <p>Cross-document view transitions</p>
-      <a href="https://http203-playlist.netlify.app/" target="_blank"
-        >Demo by Chrome Team</a
-      >
-    </section>
-    <section>
-      <p>Let's walkthrough an actual project</p>
-    </section>
-    <section>
-      <pre><code data-trim data-noescape>
+      </section>
+      <section>
+        <p>Cross-document view transitions</p>
+        <a href="https://http203-playlist.netlify.app/" target="_blank"
+          >Demo by Chrome Team</a
+        >
+      </section>
+      <section>
+        <p>Let's walkthrough an actual project</p>
+      </section>
+      <section>
+        <pre><code data-trim data-noescape>
 {`@view-transition {
   navigation: auto;
 }`}</code></pre>
-      <p class="fragment">All pages should include this css line</p>
-    </section>
-    <section>Let's move to the code!</section>
-    <section>
-      <p>All the tech used in this talk:</p>
-      <ul>
-        <li class="fragment">Astro</li>
-        <li class="fragment">Tailwind CSS</li>
-        <li class="fragment">Reveal.js</li>
-        <li class="fragment">View Transitions API</li>
-      </ul>
-    </section>
-    <section>
-      <p>Github Repos</p>
-      <ul>
-        <li class="fragment">
-          Slides used in the talk - <a
-            href="https://github.com/DaniAkash/view-transitions"
-            >DaniAkash/view-transitions</a
+        <p class="fragment">All pages should include this css line</p>
+      </section>
+      <section>Let's move to the code!</section>
+      <section>
+        <p>All the tech used in this talk:</p>
+        <ul>
+          <li class="fragment">Astro</li>
+          <li class="fragment">Tailwind CSS</li>
+          <li class="fragment">Reveal.js</li>
+          <li class="fragment">View Transitions API</li>
+        </ul>
+      </section>
+      <section>
+        <p>Github Repos</p>
+        <ul>
+          <li class="fragment">
+            Slides used in the talk - <a
+              href="https://github.com/DaniAkash/view-transitions"
+              >DaniAkash/view-transitions</a
+            >
+          </li>
+        </ul>
+        <p class="fragment">
+          or find them all + my previous talks @ daniakash.com/speaking
+        </p>
+      </section>
+      <section>
+        <center>
+          <img src="/view-transitions/daniakash.com-qr.jpg" />
+        </center>
+        <p>Connect with me on:</p>
+        <ul>
+          <li>Twitter: @dani_akash_</li>
+          <li>Bluesky: @daniakash.com</li>
+        </ul>
+        <p class="fragment text-center">
+          <span class="text-[26px]"
+            >I also run a newsletter to talk about science, tech & dev tools:</span
           >
-        </li>
-      </ul>
-      <p class="fragment">
-        or find them all + my previous talks @ daniakash.com/speaking
-      </p>
-    </section>
-    <section>
-      <center>
-        <img src="/view-transitions/daniakash.com-qr.jpg" />
-      </center>
-      <p>Connect with me on:</p>
-      <ul>
-        <li>Twitter: @dani_akash_</li>
-        <li>Bluesky: @daniakash.com</li>
-      </ul>
-      <p class="fragment text-center">
-        <span class="text-[26px]"
-          >I also run a newsletter to talk about science, tech & dev tools:</span
-        >
-        daniakash.com/newsletter
-      </p>
-    </section>
+          daniakash.com/newsletter
+        </p>
+      </section>
+    </div>
   </div>
-</div>
-<script>
-  import Reveal from "reveal.js";
-  import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
-  import Highlight from "reveal.js/plugin/highlight/highlight.esm.js";
-  import Notes from "reveal.js/plugin/notes/notes.esm.js";
+  <script>
+    import Reveal from "reveal.js";
+    import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+    import Highlight from "reveal.js/plugin/highlight/highlight.esm.js";
+    import Notes from "reveal.js/plugin/notes/notes.esm.js";
 
-  let deck = new Reveal({
-    plugins: [Markdown, Highlight, Notes],
-    embedded: true,
-    hash: true,
-  });
-  deck.initialize();
-</script>
+    let deck = new Reveal({
+      plugins: [Markdown, Highlight, Notes],
+      embedded: true,
+      hash: true,
+    });
+    deck.initialize();
+  </script>
+</BaseLayout>
