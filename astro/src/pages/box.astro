@@ -1,0 +1,42 @@
+---
+import "../../src/styles/box.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body
+    class="flex h-screen w-screen flex-col items-center justify-center gap-8"
+  >
+    <h1>Home!</h1>
+
+    <div
+      id="my-box"
+      onclick="handleClick()"
+      class="my-red-box flex h-28 w-28 cursor-pointer items-center justify-center bg-red-500"
+    >
+      Click me
+    </div>
+
+    <script is:inline>
+      const $box = document.getElementById("my-box");
+
+      const moveBox = () => {
+        $box.classList.toggle("translate-x-36");
+      };
+
+      function handleClick(e) {
+        if (!document.startViewTransition) {
+          return;
+        }
+
+        document.startViewTransition(() => moveBox());
+      }
+    </script>
+  </body>
+</html>
