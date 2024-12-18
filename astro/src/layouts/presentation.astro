@@ -34,6 +34,42 @@ import "./presentation.css";
       </div>
     </div>
     <script is:inline>
+      let viewTransitionStyleSheet = null; // Reference to the stylesheet
+
+      // Function to add the @view-transition rule
+      function addViewTransitionStyles() {
+        if (!viewTransitionStyleSheet) {
+          // Create a new stylesheet
+          viewTransitionStyleSheet = new CSSStyleSheet();
+          // Add the @view-transition rule
+          viewTransitionStyleSheet.insertRule(`
+      @view-transition {
+        navigation: auto;
+      }
+    `);
+          // Attach the stylesheet to the document
+          document.adoptedStyleSheets = [
+            ...document.adoptedStyleSheets,
+            viewTransitionStyleSheet,
+          ];
+        }
+      }
+
+      // Function to remove the @view-transition rule
+      function removeViewTransitionStyles() {
+        if (viewTransitionStyleSheet) {
+          // Remove the stylesheet from adoptedStyleSheets
+          document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
+            (sheet) => sheet !== viewTransitionStyleSheet,
+          );
+          // Clear the reference
+          viewTransitionStyleSheet = null;
+        }
+      }
+
+      addViewTransitionStyles();
+    </script>
+    <script is:inline>
       const getSlideNo = (url) => parseInt(url.split("/").pop() ?? "") || 1;
       const currentSlide = getSlideNo(window.location.pathname);
       // Old Page slide to the left
