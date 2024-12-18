@@ -1,28 +1,3 @@
 .my-red-box {
   view-transition-name: my-red-box;
 }
-
-::view-transition-old(my-red-box) {
-  animation: slide-out 300ms ease-in-out;
-}
-
-::view-transition-new(my-red-box) {
-  animation: slide-in 300ms ease-in-out;
-}
-
-@keyframes slide-out {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(144);
-  }
-}
-@keyframes slide-in {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-144);
-  }
-}

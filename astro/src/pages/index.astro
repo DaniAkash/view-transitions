@@ -89,103 +89,47 @@ const moveBox = () => {
 };`}</code></pre>
     </section>
     <section>
-      <pre><code data-trim data-noescape>{`> npm i @ai-sdk/openai`}</code></pre>
-    </section>
-    <section>
-      <pre><code data-trim data-noescape data-line-numbers="1-16|1-2|3-7|9|11-14|16">
-{`import { createOpenAI } from "@ai-sdk/openai";
-import { convertToCoreMessages, streamText } from "ai";
-
-const openai = createOpenAI({
-  compatibility: "strict",
-  apiKey: import.meta.env.OPENAI_API_KEY,
-});
-
-const coreMessages = convertToCoreMessages(messages);
-
-const response = streamText({
-  model: openai("gpt-4o"),
-  messages: coreMessages,
-});
-
-return response.toDataStreamResponse();
-`}</code></pre>
-    </section>
-    <section>
-      <pre><code data-trim data-noescape data-line-numbers="1-23|1|6-21|8-12|13-20">
-{`import { z } from "zod";
-
-const response = streamText({
-  model: openai("gpt-4o"),
-  messages: coreMessages,
-  tools: {
-    getWeather: {
-      description: "Get the current weather at a location",
-      parameters: z.object({
-        latitude: z.number(),
-        longitude: z.number(),
-      }),
-      execute: async ({ latitude, longitude }) => {
-        const response = await fetch(
-          \`https://api.open-meteo.com/v1/forecast?latitude=\${latitude}&longitude=\${longitude}&current=temperature_2m&hourly=temperature_2m&daily=sunrise,sunset&timezone=auto\`,
-        );
-
-        const weatherData = await response.json();
-        return weatherData;
-      },
-    },
+      <pre>
+        <code data-trim data-noescape data-line-numbers="2-4|6">
+{`function handleClick(e) {
+  if (!document.startViewTransition) {
+    return;
   }
-});
-`}</code></pre>
+
+  document.startViewTransition(() => moveBox());
+}`}
+        </code>
+      </pre>
     </section>
     <section>
-      <pre><code data-trim data-noescape data-line-numbers>
-{`createCodeBlock: {
-  description: "Create a code block",
-  parameters: z.object({
-    code: z.string(),
-    language: z.string(),
-  }),
-  execute: async ({ code, language }) => {
-    return { code, language };
-  },
-},
-`}</code></pre>
+      <pre><code data-trim data-noescape>{`.my-red-box {
+  view-transition-name: my-red-box;
+}`}</code></pre>
     </section>
     <section>
-      <p class="">RAG</p>
-      <p class="fragment text-left text-[18px]">
-        Retrieval-Augmented Generation (RAG) is a machine learning framework
-        that combines retrieved information from external knowledge bases with
-        generative models to produce accurate and contextually rich outputs.
-      </p>
-      <small class="fragment w-full text-right text-[14px]"
-        >- <a
-          href="https://cloud.google.com/use-cases/retrieval-augmented-generation"
-          target="_blank"
-        >
-          Google Cloud</a
-        ></small
+      <p>Cross-document view transitions</p>
+      <a href="https://http203-playlist.netlify.app/" target="_blank"
+        >Demo by Chrome Team</a
       >
     </section>
     <section>
-      <ol>
-        <li>Embeddings</li>
-        <li><a href="https://chunkers.vercel.app/">Chunks</a></li>
-      </ol>
+      <p>Let's walkthrough an actual project</p>
     </section>
-    <section>Let's see a demo!</section>
+    <section>
+      <pre><code data-trim data-noescape>
+{`@view-transition {
+  navigation: auto;
+}`}</code></pre>
+      <p class="fragment">All pages should include this css line</p>
+    </section>
+    <section>Let's move to the code!</section>
     <section>
       <p>All the tech used in this talk:</p>
       <ul>
         <li class="fragment">Astro</li>
         <li class="fragment">Tailwind CSS</li>
         <li class="fragment">Reveal.js</li>
-        <li class="fragment">AI SDK by Vercel</li>
-        <li class="fragment">Drizzle ORM + Postgres</li>
-        <li class="fragment">Cloudflare Workers</li>
-        <li class="fragment">semantic-chunking</li>
-        <li class="fragment">motion/react</li>
+        <li class="fragment">View Transitions API</li>
       </ul>
     </section>
     <section>
@@ -193,14 +137,8 @@ const response = streamText({
       <ul>
         <li class="fragment">
           Slides used in the talk - <a
-            href="https://github.com/DaniAkash/ai-for-frontend-developers"
-            >DaniAkash/ai-for-frontend-developers</a
-          >
-        </li>
-        <li class="fragment">
-          POC - <a
-            href="https://github.com/DaniAkash/DaniAkash/releases/tag/v0.0.1-ai"
-            >DaniAkash/DaniAkash@v0.0.1-ai</a
+            href="https://github.com/DaniAkash/view-transitions"
+            >DaniAkash/view-transitions</a
           >
         </li>
       </ul>
@@ -209,16 +147,19 @@ const response = streamText({
       </p>
     </section>
     <section>
+      <center>
+        <img src="/daniakash.com-qr.jpg" />
+      </center>
       <p>Connect with me on:</p>
       <ul>
-        <li>𝕏&nbsp;&nbsp;: @dani_akash_</li>
-        <li>🦋: @daniakash.com</li>
+        <li>Twitter: @dani_akash_</li>
+        <li>Bluesky: @daniakash.com</li>
       </ul>
-      <p class="text-center">
+      <p class="fragment text-center">
         <span class="text-[26px]"
           >I also run a newsletter to talk about science, tech & dev tools:</span
         >
-        daniakash.com/newsletter&nbsp;&nbsp;📧
+        daniakash.com/newsletter
       </p>
     </section>
   </div>
