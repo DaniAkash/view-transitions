@@ -44,7 +44,7 @@ export const NavBar = ({ activeUrl }: { activeUrl: string }) => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center text-white">
-                  AI for frontend Developers
+                  View Transitions API
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">

@@ -28,7 +28,7 @@ import "./presentation.css";
         <slot />
       </div>
     </div>
-    <script is:inline>
+    <!-- <script is:inline>
       let viewTransitionStyleSheet = null; // Reference to the stylesheet
 
       // Function to add the @view-transition rule
@@ -63,7 +63,7 @@ import "./presentation.css";
       }
 
       addViewTransitionStyles();
-    </script>
+    </script> -->
     <script is:inline>
       const getSlideNo = (url) => parseInt(url.split("/").pop() ?? "") || 1;
       const currentSlide = getSlideNo(window.location.pathname);
